@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block carousel %}
+  
+{% endblock carousel %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-lg-4">
+            <img src="{{products.image.url}}" alt="" width="100%" class="m-3">
+        </div>
+
+
+        <div class="col-lg-8">
+            <div class="row m-3">
+
+                <div class="card">
+                    <div class="card-header">
+                      Product Details
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">{{products.product_name}}</h5>
+                      <p class="card-text text-success fw-bold">Special Price</p>
+                      <p class="card-text"><strong>{{products.price}}/-</strong>&nbsp;<del>{{products.price|add:products.price}}/-</del><span class="text-success">50% off</span></p>
+                      <p class="card-text">{{products.desc}}</p>
+                      <p class="card-text fw-bold">Available offers</p>
+                      <ul>
+                        <li>Bank Offer5% Cashback on Flipkart Axis Bank CardT&C</li>
+                        <li>Bank Offer10% off up to ₹1250 on HDFC Bank Credit Card EMI Txns, Tenure: 6 months, Min Txn Value: ₹7500T&C</li>
+                        <li>Bank Offer10% off up to ₹1500 on HDFC Bank Credit Card EMI Txns, Tenure: 9 and 12 months, Min Txn Value: ₹7500T&C</li>
+                        <li>Special PriceGet extra 27% off (price inclusive of cashback/coupon)T&C</li>
+                      </ul>
+                      <p class="card-text">Delivery by {{date}} | <span class="text-success">Free</span></p>
+                      <p class="card-text">10 Days Return Policy</p>
+                      
+                      <a href="/add_cart/{{products.id}}" class="btn btn-warning">Add to Cart</a>
+                      <a href="/add_wishlist/{{products.id}}" class="btn btn-primary">Add to Wishlist</a>
+
+                    </div>
+                  </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+  
+{% endblock content %}

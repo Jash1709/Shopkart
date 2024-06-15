@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+
+{% block title %}ShopKart{% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+<div class="row">
+
+    
+    {% for x in items %}
+
+        <div class="card">
+        <div class="card-header">
+            WishList
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{x.product.product_name}}</h5>
+             <img src="{{x.product.image.url}}" alt="" style="height:200px">
+             <p class="card-text fw-medium">Product price : {{x.product.price}}/-</p>
+              <a href="/remove_wishlist/{{x.product.id}}" class="btn btn-primary btn-sm">Remove</a>
+               <a href="/add_cart/{{x.product.id}}" class="btn btn-warning btn-sm">Move to Cart</a>
+
+            
+        </div>
+        </div>
+        {% empty %}
+
+        <div class="card">
+        <div class="card-header">
+            WishList
+        </div>
+        <div class="card-body" style="height:200px">
+            
+            <h5 class="text-secondary text-center mt-5">Your WishList is Empty</h5>
+            
+        </div>
+        </div>
+        
+        {% endfor %}
+    
+    {% comment %} ===================================== {% endcomment %}
+
+     
+
+</div>
+
+</div>
+
+{% endblock content %}

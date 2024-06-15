@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block carousel %}
+  
+{% endblock carousel %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="w-50 bg-body-tertiary shadow mx-auto py-3 px-5 rounded-3">
+            {% for x in items %}
+            <p>{{x.product.product_name|truncatewords:5}} {{x.quantity}} x {{x.product.price}} = </p>
+            {% endfor %}
+            <p><strong>Order Address -</strong>{{address.address}}</p>
+            <a href="/payment/{{address.id}}" class="btn btn-primary btn-sm">Confirm Order</a>
+        </div>
+    </div>
+</div>
+  
+{% endblock content %}

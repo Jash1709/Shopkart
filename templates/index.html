@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- left panel -->
+        <div class="col-lg-2">
+
+        </div>
+        <!-- right panel -->
+        <div class="col-lg-10">
+            <div class="row justify-content-around p-2 ">
+
+                {% for product in products %}
+                 <div class="card my-2" style="width: 15rem;">
+                  <a href="product_details/{{product.id}}" class="nav-link">
+                    <img src="{{product.image.url}}" class="card-img-top" alt="..." height="200px">
+                    <div class="card-body">
+                      <h6 class="card-title">{{product.product_name}}</h6>
+                      <p class="card-text"><strong>{{product.price}}/-</strong>&nbsp;<del>{{product.price|add:product.price}}/-</del><span class="text-success">50% off</span></p>
+                      
+                    </div>
+                  </a>
+                  </div>
+                {% endfor %}
+                
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

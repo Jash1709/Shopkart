@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block carousel %}
+  
+{% endblock carousel %}
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col">
+        <h5>Saved Addresses</h5>
+        {% for i in address %}
+        <span><strong>Address {{forloop.counter}} :</strong></span><a href="/confirm_order/{{i.id}}" class="nav-link"><p>{{i.address}},{{i.pincode}}</p></a>
+        <a href="/update_address/{{i.id}}" class="btn btn-sm btn-warning">Edit</a>
+        <a href="/delete_address/{{i.id}}" class="btn btn-sm btn-danger">Delete</a>
+        <hr>
+        {% empty %}
+          
+        {% endfor %}
+
+      </div>
+
+      <div class="col">
+        <form action="" method="post">
+          {% csrf_token %}
+          <div class="col-12 m2">
+            <label for="inputaddress">Address</label>
+            <input type="text" placeholder="1234 Main st" class="form-control" name="address" {% if update_address %}value="{{update_address.address}}" {% endif %} required>
+          </div>
+
+          <div class="col-12 m2">
+            <label for="inputpincode">Pincode</label>
+            <input type="text" placeholder="450000" minlength="6" maxlength="6" name="pincode" {% if update_address %}value="{{update_address.pincode}}" {% endif %} class="form-control" required>
+          </div>
+
+          <div class="col-12">
+            {% if update_address %}
+              <button type="submit" class="btn btn-primary mt-3">Update Address</button>
+            {% else %}
+             <button type="submit" class="btn btn-primary mt-3">Add New Address</button>
+            {% endif %}
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+{% endblock content %}

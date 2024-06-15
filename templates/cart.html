@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block carousel %}
+  
+{% endblock carousel %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8">
+
+            <div class="row">
+                {% for x in items %}
+                <div class="card mb-3">
+                    <div class="card-header">
+                      Cart Details
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">{{x.product.product_name}}</h5>
+                      <img src="{{x.product.image.url}}" alt="" style="height: 200px;">
+                      <p class="card-text">Product price : {{x.product.price}}/-</p>
+                      <p class="card-text fw-medium">Quantity : 
+                        <a href="/updateqty/0/{{x.product.id}}" class="btn btn-primary btn-sm">-</a>
+                        <input type="text" size="2" value="{{x.quantity}}" readonly>
+                        <a href="/updateqty/1/{{x.product.id}}" class="btn btn-primary btn-sm">+</a>
+                      </p>
+                      <a href="/remove_product/{{x.product.id}}" class="btn btn-primary btn-sm">REMOVE</a>
+                      <a href="/add_wishlist/{{x.product.id}}" class="btn btn-warning btn-sm">SAVE FOR LATER</a>
+                    </div>
+                  </div>
+
+                  {% empty %}
+                  <div class="card">
+                    <div class="card-header">
+                      Cart Details
+                    </div>
+                    <div class="card-body">
+
+                      <h5 class="text-secondary text-center my-5">Your Cart is Empty</h5>
+                   
+                    </div>
+                  </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+        {% if items %}
+        <div class="col-lg-3 ms-3">
+            <div class="row">
+                <div class="card">
+                    <div class="card-header">
+                      Payment Details
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text"><strong>Total Items({{total_product}})</strong></p>
+                      <hr>
+                      <p class="card-text"><strong>Total Amount : {{total}}/-</strong></p>
+
+                      <a href="{% url 'address' %}" class="btn text-white px-5 rounded-0" style="background-color: #fb641b;">PLACE ORDER</a>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        {% endif %}
+        
+    </div>
+</div>
+  
+{% endblock content %}
